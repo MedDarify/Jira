@@ -11,7 +11,7 @@ function SignIn() {
                         Welcome Back
                     </h1>
                     <p 
-                    className="text-muted-foreground text-sm md:text-base">
+                    className="text-muted-foreground text-sm font-semibold md:text-base">
                         Sign in to your account to continue
                     </p>
                 </div>

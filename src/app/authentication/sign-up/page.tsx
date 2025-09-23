@@ -5,8 +5,9 @@ function SignUp() {
     <div className=" w-full flex flex-col items-center p-2 justify-center dark:bg-black ">
       <div className="w-full max-w-md  space-y-1">
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">Join Us Today</h1>
-          {/* <p className="text-muted-foreground">Create your account to get started</p> */}
+          <h1 className="text-2xl font-bold tracking-tight font-serif mb-1 text-green-600">
+            Join Us Today
+          </h1>
         </div>
         <SignUpCard />
       </div>

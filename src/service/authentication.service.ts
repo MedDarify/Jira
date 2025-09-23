@@ -5,10 +5,11 @@ export class AuthenticationService {
 
     async SignIn(data: SignInData): Promise<{ token: string }> {
         const response = await fetch(
-            "http://localhost:3001/api/authentication/signin", {
+            "http://localhost:3001/api/Manager/SignIn", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
             },
             body: JSON.stringify(data),
         });

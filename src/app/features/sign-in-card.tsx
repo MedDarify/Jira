@@ -10,6 +10,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link"
 import { Eye, EyeOff, Mail, Lock } from "lucide-react"
 import { useState } from "react"
+import { AuthenticationService } from "@/service/authentication.service"
+import { redirect } from "next/navigation"
+import { FcGoogle } from "react-icons/fc"
+import {FaGithub} from "react-icons/fa"
 
 const FormSchema = z.object({
     email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -18,7 +22,7 @@ const FormSchema = z.object({
 
 function SignInCard() {
     const [showPassword, setShowPassword] = useState(false)
-
+    const authenticationservice = new AuthenticationService();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -28,7 +32,15 @@ function SignInCard() {
     })
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-        console.log("Sign in data:", values)
+        console.log("Sign in data:", values);
+        try {
+            const response = await authenticationservice.SignIn(values); 
+            console.log("Sign in successful:", response);
+            // window.location.href = '/';
+            redirect('/');
+        } catch (error) {
+            console.error("Sign in failed:", error);
+        }
     }
 
     return (
@@ -100,14 +112,6 @@ function SignInCard() {
                             )}
                         />
 
-                        <div className="flex items-center justify-end">
-                            {/* <Link 
-                                href="/forgot-password" 
-                                className="text-xs text-primary hover:text-primary/80 transition-colors">
-                                Forgot password?
-                            </Link> */}
-                        </div>
-
                         <Button
                             className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground 
                             font-medium transition-all duration-200 shadow-sm hover:shadow-md"
@@ -117,7 +121,14 @@ function SignInCard() {
                         </Button>
                     </form>
                 </Form>
-
+                <Button className="w-full h-11  border border-input font-serif font-semibold">
+                    <FcGoogle className="mr-2 size-5"/>
+                    Login with Google
+                </Button>    
+                <Button className="w-full h-11  border border-input font-serif font-semibold">
+                    <FaGithub className="mr-2 size-5"/>
+                    Login with Github
+                </Button>   
                 <div className="relative my-6">
                     <div className="absolute inset-0 flex items-center">
                         <span className="w-full border-t border-border" />

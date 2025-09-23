@@ -10,7 +10,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link"
 import { Eye, EyeOff, Mail, Lock, User, UserCheck } from "lucide-react"
 import { useState } from "react"
-
+import { AuthenticationService } from "@/service/authentication.service"
+import {FcGoogle} from "react-icons/fc"
+import { FaGithub } from "react-icons/fa"
 const FormSchema = z.object({
     username: z.string().min(1, "Username is required").min(3, "Username must be at least 3 characters"),
     firstName: z.string().min(1, "First name is required").min(2, "First name must be at least 2 characters"),
@@ -21,7 +23,7 @@ const FormSchema = z.object({
 
 function SignUpCard() {
     const [showPassword, setShowPassword] = useState(false)
-
+    const authenticationservice = new AuthenticationService();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -34,7 +36,14 @@ function SignUpCard() {
     })
 
     const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-        console.log("Sign up data:", values)
+        console.log("Sign up data: ==> ", values);
+        try {
+            const response = await authenticationservice.SignUp(values); 
+            console.log("Sign up successful:", response);
+        }
+        catch (error) {
+            console.error("Sign up failed:", error);
+        }
     }
 
     return (
@@ -45,9 +54,9 @@ function SignUpCard() {
                     Fill in your details to create a new account
                 </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
                         <FormField
                             control={form.control}
                             name="username"
@@ -175,7 +184,14 @@ function SignUpCard() {
                         </Button>
                     </form>
                 </Form>
-
+                <Button className="w-full h-11  border border-input font-serif font-semibold">
+                    <FcGoogle className="mr-2 size-5"/>
+                    Login with Google
+                </Button>  
+                <Button className="w-full h-11  border border-input font-serif font-semibold">
+                    <FaGithub className="mr-2 size-5"/>
+                    Login with Github
+                </Button>   
                 <div className="relative my-6">
                     <div className="absolute inset-0 flex items-center">
                         <span className="w-full border-t border-border" />
