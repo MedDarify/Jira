@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { ArrowRight, CheckCircle, Users, Calendar, BarChart3, Zap, Star, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -57,7 +58,7 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-32">
+      <section className="py-20 md:py-32 p-16">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-balance mb-6">
@@ -82,7 +83,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-muted/30">
+      <section id="features" className="py-20 bg-muted/30 p-24">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Everything you need to manage projects</h2>
@@ -166,7 +167,7 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20">
+      <section id="testimonials" className="py-20 p-24">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by teams worldwide</h2>
@@ -247,7 +248,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-accent text-accent-foreground">
+      <section className="py-20 bg-accent text-accent-foreground p-24">
         <div className="container">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to transform your project management?</h2>
@@ -263,7 +264,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border">
+      <footer className="py-12 border-t border-border p-16">
         <div className="container">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
